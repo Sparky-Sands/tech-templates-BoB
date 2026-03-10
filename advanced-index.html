@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartupName | The Future of Work</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-main: #ffffff;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-main); background-color: var(--bg-main); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; margin-bottom: 1rem; }
+        h1 { font-size: 3.5rem; letter-spacing: -0.05em; }
+        h2 { font-size: 2.5rem; letter-spacing: -0.02em; }
+        p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.125rem; }
+        .text-gradient { background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 6rem 0; }
+        .bg-light { background-color: var(--bg-light); }
+        .text-center { text-align: center; }
+        .section-title { margin-bottom: 1rem; }
+        .section-subtitle { max-width: 600px; margin: 0 auto 3rem; }
+        .grid { display: grid; gap: 2rem; }
+        .features-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: center;}
+        .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; }
+        .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; cursor: pointer; border: none; }
+        .btn-primary { background-color: var(--primary); color: white; box-shadow: var(--shadow-sm); }
+        .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+        .btn-secondary { background-color: white; color: var(--text-main); border: 1px solid var(--border); }
+        .btn-secondary:hover { background-color: var(--bg-light); transform: translateY(-1px); }
+        .btn-sm { padding: 0.5rem 1rem; font-size: 0.875rem; }
+        .btn-full { width: 100%; text-align: center; }
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 1000; transition: all 0.3s ease; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 1.25rem; font-weight: 700; color: var(--text-main); }
+        .logo span { color: var(--primary); }
+        .nav-links a { text-decoration: none; color: var(--text-muted); margin: 0 1rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-main); }
+        .hero { padding-top: 150px; text-align: center; }
+        .hero-content { max-width: 800px; margin: 0 auto 3rem; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; }
+        .mockup-placeholder { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); border: 1px solid var(--border); border-radius: var(--radius); height: 400px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-weight: 600; box-shadow: var(--shadow-lg); }
+        .dashboard-mockup { height: 500px; }
+        .icon-placeholder { font-size: 2rem; margin-bottom: 1rem; }
+        .card { background: white; padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .pricing-card { text-align: left; display: flex; flex-direction: column; }
+        .pricing-card.recommended { border: 2px solid var(--primary); box-shadow: var(--shadow-lg); transform: scale(1.05); position: relative; }
+        .pricing-card.recommended:hover { transform: scale(1.05) translateY(-5px); }
+        .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        .price { font-size: 3rem; font-weight: 700; color: var(--text-main); margin-bottom: 1.5rem; }
+        .price span { font-size: 1rem; color: var(--text-muted); }
+        .pricing-card ul { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
+        .pricing-card ul li { margin-bottom: 0.75rem; color: var(--text-muted); }
+        .pricing-card ul li::before { content: "✓"; color: var(--primary); margin-right: 0.5rem; font-weight: bold; }
+        .stats-grid { display: flex; justify-content: space-around; margin: 3rem 0; }
+        .testimonial { font-size: 1.5rem; font-weight: 500; max-width: 800px; margin: 0 auto; color: var(--text-main); }
+        .testimonial cite { display: block; font-size: 1rem; color: var(--text-muted); margin-top: 1rem; font-style: normal; }
+        .faq-list { max-width: 700px; margin: 0 auto; text-align: left; }
+        .faq-item { border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .faq-item h4 { margin-bottom: 0.5rem; }
+        .faq-item p { margin-bottom: 0; }
+        .final-cta { background: var(--text-main); color: white; }
+        .final-cta h2, .final-cta p { color: white; }
+        .final-cta .btn { background: white; color: var(--text-main); }
+        .footer { border-top: 1px solid var(--border); padding: 4rem 0 2rem; }
+        .footer a { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 0.5rem; }
+        .footer a:hover { color: var(--primary); }
+        .copyright { margin-top: 4rem; color: var(--text-muted); font-size: 0.875rem; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .nav-links { display: none; }
+            .hero-buttons { flex-direction: column; }
+            .pricing-card.recommended { transform: scale(1); }
+            .pricing-card.recommended:hover { transform: translateY(-5px); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .stats-grid { flex-direction: column; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="logo">Startup<span>Name</span></div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#solution">Solution</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <a href="#signup" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+    </nav>
+
+    <header class="hero section">
+        <div class="container hero-container">
+            <div class="hero-content reveal">
+                <h1>Build faster, scale <span class="text-gradient">smarter.</span></h1>
+                <p>The all-in-one platform that helps modern teams ship products in record time. No friction, just results.</p>
+                <div class="hero-buttons">
+                    <a href="#signup" class="btn btn-primary">Start for free</a>
+                    <a href="#demo" class="btn btn-secondary">Book a Demo</a>
+                </div>
+            </div>
+            <div class="hero-image reveal">
+                <div class="mockup-placeholder">Product Mockup (1200x800)</div>
+            </div>
+        </div>
+    </header>
+
+    <section id="problem" class="section bg-light">
+        <div class="container text-center reveal">
+            <h2 class="section-title">The old way is broken.</h2>
+            <p class="section-subtitle">Teams waste 40% of
+
